@@ -1,0 +1,19 @@
+---
+- name: Delete tempory directory
+  file:
+    path: "{{tmp_path}}"
+    state: absent
+
+- name: umount nas share
+  mount:
+    state: 'mounted'
+    fstype: '{{nas_fstype}}'
+    path: '{{mount_dir}}'
+    src: '//{{nas_server}}{{nas_dir}}'
+    opts: "username={{nas_user}},sec=ntlm,password={{nas_password}}"
+    state: absent
+
+- name: Delete mount point directory
+  file:
+    path: "{{mount_dir}}"
+    state: absent

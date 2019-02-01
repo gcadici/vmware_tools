@@ -1,0 +1,33 @@
+---
+- name: Include vars
+  include_vars:
+    file: "../../../group_vars/all/vault"
+
+- name: Create Mount point directory
+  file:
+    path: '{{mount_dir}}'
+    state: directory
+    mode: 0755
+
+- name: Mount Nas Share
+  mount:
+    state: 'mounted'
+    fstype: '{{nas_fstype}}'
+    path: '{{mount_dir}}'
+    src: '//{{nas_server}}{{nas_dir}}'
+    opts: "username={{nas_user}},sec=ntlm,password={{nas_password}}"
+
+- name: Create tempory directory
+  file:
+    path: '{{tmp_path}}'
+    state: directory
+    mode: 0755
+
+- name: Unarchive vmware tarball
+  unarchive:
+    src: "{{mount_dir}}/{{tar_file}}"
+    dest: '{{tmp_path}}'
+    remote_src: yes
+
+- name: Launch installation script
+  shell: '{{tmp_path}}/vmware-tools-distrib/vmware-install.pl -d'

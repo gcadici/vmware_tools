@@ -1,0 +1,11 @@
+---
+- name: install package
+  apt:
+    name: '{{item}}'
+    state: 'present'
+    update_cache: yes
+  with_items:
+    - '{{packages}}'
+  
+- name: install linux-headers
+  shell: apt install -y linux-headers-$(uname -r) gcc-4.3*

@@ -1,0 +1,8 @@
+- name: deploy vmware-tools
+  hosts: unix-servers
+
+  vars:
+    ansible_become: yes
+    
+  roles:
+    - vmware_tools

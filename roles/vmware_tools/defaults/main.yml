@@ -1,0 +1,20 @@
+---
+#Packages to install
+packages:
+  - autoconf
+  - make
+  - psmisc
+
+#Nas information
+nas_server: "{{ nas_server }}"  
+nas_user: "{{ nas_user }}"
+nas_password: "{{ nas_password }}"
+nas_fstype: cifs
+nas_dir: /vmware_tools
+mount_dir: /mnt/vmware
+
+#temp directory
+tmp_path: /tmp/vmware
+
+#VMware tools version
+tar_file: "VMwareTools-9.4.5-1734305.tar.gz"
