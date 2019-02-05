@@ -1,7 +1,7 @@
 # vmware_tools
 Deploy the VMware Tools on Debian
 
-===
+
 
 A very simple cookbook to deploy vsphere vmware tools (officials) on Debian with Ansible.
 This cookbook install all the necessary packages to run VMware tools, it mount a network sharing and unpack the vmware tools on your machine. Then, it executes the script which install the tools, and finally, clean all the temporary files and directories.
